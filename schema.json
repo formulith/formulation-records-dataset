@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FormulationRecord",
+  "type": "object",
+  "required": [
+    "record_id",
+    "project",
+    "components",
+    "objectives"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "role",
+          "identifier",
+          "concentration"
+        ],
+        "properties": {
+          "role": {
+            "enum": [
+              "main",
+              "additive",
+              "inhibitor",
+              "solvent",
+              "chelator"
+            ]
+          },
+          "identifier": {
+            "type": "object",
+            "properties": {
+              "smiles": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "cas": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "common_name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "concentration": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "unit": {
+                "enum": [
+                  "wt%",
+                  "vol%",
+                  "mol/L",
+                  "ppm",
+                  null
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "process": {
+      "type": "object",
+      "properties": {
+        "temperature_C": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "time_s": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      }
+    },
+    "objectives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "unit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "constraints": {
+      "type": "object"
+    },
+    "feasible": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "provenance": {
+      "type": "object"
+    }
+  }
+}
